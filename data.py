@@ -7,7 +7,7 @@ service_key = os.environ['MY_SERVICE_KEY']
 g = Github(access_token)
 repo = g.get_user().get_repo('YOURTRIP_data')
 
-url = 'http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey='+service_key+'&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=&cat2=&cat3=&_type=json'
+url = 'http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=60000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&ServiceKey='+service_key+'&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=&cat2=&cat3=&_type=json'
 data = requests.get(url).json()
 
 result = {}
