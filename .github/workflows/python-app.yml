@@ -25,7 +25,7 @@ jobs:
         python -m pip install PyGithub
     - name: run test.py
       run : |
-        python test.py
+        python data.py
       env:
         MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         MY_SERVICE_KEY: ${{ secrets.MY_SERVICE_KEY }}
