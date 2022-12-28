@@ -18,7 +18,7 @@ def createNewData(item):
             new_data[k] = item[k]
 
     new_data['detail'] = detail_code[item['cat3']]
-    # new_data['desc'] = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magni voluptates distinctio vero sit est sed placeat, odit accusantium! Reprehenderit rerum dolorem consectetur assumenda voluptatum. Odit eveniet tempore reiciendis repellendus. Tempore esse mollitia et perferendis omnis magni pariatur temporibus? Quos consequatur unde odit assumenda deleniti iste dolor, impedit molestias perspiciatis. Illum, molestias pariatur adipisci aut commodi eaque praesentium et delectus! Nam repellendus dolorem maiores, distinctio illum non eos vel quam quidem commodi minima autem doloremque voluptate saepe, expedita molestias repellat magni iste in ad delectus. Earum maxime officia ea vitae.'
+    new_data['desc'] = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magni voluptates distinctio vero sit est sed placeat, odit accusantium! Reprehenderit rerum dolorem consectetur assumenda voluptatum. Odit eveniet tempore reiciendis repellendus. Tempore esse mollitia et perferendis omnis magni pariatur temporibus? Quos consequatur unde odit assumenda deleniti iste dolor, impedit molestias perspiciatis. Illum, molestias pariatur adipisci aut commodi eaque praesentium et delectus! Nam repellendus dolorem maiores, distinctio illum non eos vel quam quidem commodi minima autem doloremque voluptate saepe, expedita molestias repellat magni iste in ad delectus. Earum maxime officia ea vitae.'
 
     return new_data
 
@@ -75,7 +75,7 @@ for item in data['response']['body']['items']['item']:
     result['area'] = area
 
 for area in result['area']:
-    selected = random.sample([i for i in range(len(result['area'][area]['temp']))], 2)
+    selected = random.sample([i for i in range(len(result['area'][area]['temp']))], 100)
 
     for index in selected:
         item = result['area'][area]['temp'][index]
