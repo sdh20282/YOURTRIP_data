@@ -100,7 +100,7 @@ for area in result['area']:
     ########## new category
     today = result.get('today', {})
 
-    if random.randrange(1, 1001) < 100:
+    if random.randrange(1, 1001) < 300:
         today_list = today.get('list', [])
         new_data = createNewData(item)
         today_list.append(new_data)
