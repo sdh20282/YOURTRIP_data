@@ -96,7 +96,7 @@ for area in result['area']:
         result['area'][area]['count'] = result['area'][area].get('count', 0) + 1
 
         ########## new category
-        today = result.get('today', {})
+        today = result.get('today_recommended', {})
 
         if random.randrange(1, 1001) < 100:
             today_list = today.get('list', [])
@@ -106,7 +106,20 @@ for area in result['area']:
 
             today['count'] = today.get('count', 0) + 1
 
-        result['today'] = today
+        result['today_recommended'] = today
+
+        ########## new category
+        today = result.get('today_best', {})
+
+        if random.randrange(1, 1001) < 100:
+            today_list = today.get('list', [])
+            new_data = createNewData(item)
+            today_list.append(new_data)
+            today['list'] = today_list
+
+            today['count'] = today.get('count', 0) + 1
+
+        result['today_best'] = today
 
     del result['area'][area]['temp']
 
