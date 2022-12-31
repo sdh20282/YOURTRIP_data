@@ -151,14 +151,20 @@ for category in result:
 
 try:
   contents = repo.get_contents("data.json")
-  search_contents = repo.get_contents("dataSearch.json")
   print('find file')
   repo.delete_file(contents.path, "remove data", contents.sha, branch="main")
-  repo.delete_file(search_contents.path, "remove data", contents.sha, branch="main")
   print('recreate file')
   repo.create_file('data.json', 'update 여행지 데이터', json.dumps(result, indent=4, ensure_ascii=False), branch='main')
-  repo.create_file('dataSearch.json', 'update 여행지 검색 데이터', json.dumps(search_result, indent=4, ensure_ascii=False), branch='main')
 except:
   repo.create_file('data.json', 'create 여행지 데이터', json.dumps(result, indent=4, ensure_ascii=False), branch='main')
-  repo.create_file('dataSearch.json', 'create 여행지 검색 데이터', json.dumps(search_result, indent=4, ensure_ascii=False), branch='main')
   print('create file')
+
+try:
+  search_contents = repo.get_contents("dataSearch.json")
+  print('find search file')
+  repo.delete_file(search_contents.path, "remove search data", contents.sha, branch="main")
+  print('recreate search file')
+  repo.create_file('dataSearch.json', 'update 여행지 검색 데이터', json.dumps(search_result, indent=4, ensure_ascii=False), branch='main')
+except:
+  repo.create_file('dataSearch.json', 'create 여행지 검색 데이터', json.dumps(search_result, indent=4, ensure_ascii=False), branch='main')
+  print('create search file')
