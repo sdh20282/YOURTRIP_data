@@ -38,6 +38,7 @@ def addData(areaData, theme, item):
     return areaData
 
 result = {}
+search_result = {}
 area_code = { '1': '서울특별시', '2': '인천광역시', '3': '대전광역시', '4': '대구광역시', '5': '광주광역시', '6': '부산광역시', '7': '울산광역시', '8': '세종특별자치시', '31': '경기도', '32': '강원도', '33': '충청북도', '34': '충청남도', '35': '경상북도', '36': '경상남도', '37': '전라북도', '38': '전라남도', '39': '제주특별자치도'}
 theme_code = { '1': '야경', '2': '역사', '3': '자연', '4': '힐링', '5': '공연행사', '6': '체험', '7': '이런곳은어때요', '8': '오늘의여행지', '9': '오늘의식당', '10': '전체여행지', '11': '전체식당' }
 theme_list = { 'A02050300': '1', 'A02050100': '1', 'A02050200': '1', 'A02050600': '1', 'A0201': '2', 'A01010100': '3', 'A01010200': '3', 'A01010300': '3', 'A01010500': '3', 'A01010600': '3', 'A01010700': '3', 'A0202': '4', 'A0207': '5', 'A0208': '5', 'A0203': '6', 'A02020400': '7', 'A02030400': '7', 'A02030600': '7', 'A05020700' : '7' }
@@ -120,6 +121,15 @@ for area in result['area']:
             today['count'] = today.get('count', 0) + 1
 
         result['today_best'] = today
+        
+        ########## search data
+        search_list = search_result.get('list', [])
+
+        new_data = createNewData(item)
+        new_data['area'] = area
+        search_list.append(new_data)
+
+        search_result['list'] = search_list
 
     del result['area'][area]['temp']
 
@@ -141,10 +151,14 @@ for category in result:
 
 try:
   contents = repo.get_contents("data.json")
+  search_contents = repo.get_contents("dataSearch.json")
   print('find file')
   repo.delete_file(contents.path, "remove data", contents.sha, branch="main")
+  repo.delete_file(search_contents.path, "remove data", contents.sha, branch="main")
   print('recreate file')
   repo.create_file('data.json', 'update 여행지 데이터', json.dumps(result, indent=4, ensure_ascii=False), branch='main')
+  repo.create_file('dataSearch.json', 'update 여행지 검색 데이터', json.dumps(search_result, indent=4, ensure_ascii=False), branch='main')
 except:
-  print('create file')
   repo.create_file('data.json', 'create 여행지 데이터', json.dumps(result, indent=4, ensure_ascii=False), branch='main')
+  repo.create_file('dataSearch.json', 'create 여행지 검색 데이터', json.dumps(search_result, indent=4, ensure_ascii=False), branch='main')
+  print('create file')
