@@ -49,6 +49,9 @@ necessary_keys = ['contentid', 'addr1', 'firstimage', "firstimage2", "mapx", "ma
 for item in data['response']['body']['items']['item']:
     if not item['areacode']:
         continue
+    
+    if item['addr1'].split(' ')[0] not in area_name:
+            continue
 
     if not item['firstimage']:
         continue
@@ -81,9 +84,6 @@ for area in result['area']:
 
     for index in selected:
         item = result['area'][area]['temp'][index]
-        
-        if item['addr'].split(' ')[0] not in area_name:
-            continue
 
         if item['cat2'] in theme_list:
             newData = addData(result['area'][area], theme_code[theme_list[item['cat2']]], item)
