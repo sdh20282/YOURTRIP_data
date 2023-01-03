@@ -162,7 +162,7 @@ except:
 try:
   search_contents = repo.get_contents("dataSearch.json")
   print('find search file')
-  repo.delete_file(search_contents.path, "remove search data", contents.sha, branch="main")
+  repo.delete_file(search_contents.path, "remove search data", search_contents.sha, branch="main")
   print('recreate search file')
   repo.create_file('dataSearch.json', 'update 여행지 검색 데이터', json.dumps(search_result, indent=4, ensure_ascii=False), branch='main')
 except:
